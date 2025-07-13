@@ -1,68 +1,179 @@
-<div id="theList" class="container mt-4">
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <h2 class="card-title text-center">Reservation List</h2>
-
-      <!-- Header row -->
-      <div class="row font-weight-bold text-center border-bottom pb-2" style="background-color: #f8f9fa;">
-        <div class="col-2">Area</div>
-        <div class="col-2">Start Time</div>
-        <div class="col-2">End Time</div>
-        <div class="col-2">Booked</div>
-        <div class="col-2">Image</div>
-      </div>
-
-      <!-- Data rows -->
-      <div *ngFor="let item of reservations; let i = index" class="row align-items-center py-2 border-bottom">
-
-        <div class="col-2">
-          <input type="text"
-                 [(ngModel)]="reservations[i].area"
-                 class="form-control"
-                 name="area{{i}}"
-                 required
-                 #area="ngModel"
-                 [ngClass]="{ 'is-invalid': area.touched && area.invalid }" />
+<div id="theForm">
+    <h2>Reservation Form</h2> 
+    <form #f="ngForm" name="reservationForm" (submit)="addReservation(f)">
+        
+      <div class="form-group">
+            <label>Area</label>
+            <input type="text"
+                class="form-control"
+                name="area"
+                [(ngModel)]="reservation.area"
+                #reservationModel="ngModel"
+                required>
+            <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
+              Area is required
+            </span>
         </div>
 
-        <div class="col-2">
-          <input type="time"
-                 [(ngModel)]="reservations[i].start_time"
-                 class="form-control"
-                 name="startTime{{i}}"
-                 required
-                 #startTime="ngModel"
-                 [ngClass]="{ 'is-invalid': startTime.touched && startTime.invalid }" />
+        <!-- <div class="form-group">
+            <label>Start time</label>
+            <input type="text"
+                class="form-control"
+                name="start_time"
+                [(ngModel)]="reservation.start_time"
+                #reservationModel="ngModel"
+                required>
+            <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
+              Start Time is required
+            </span>
         </div>
 
-        <div class="col-2">
-          <input type="time"
-                 [(ngModel)]="reservations[i].end_time"
-                 class="form-control"
-                 name="endTime{{i}}"
-                 required
-                 #endTime="ngModel"
-                 [ngClass]="{ 'is-invalid': endTime.touched && endTime.invalid }" />
+        <div class="form-group">
+            <label>End Time</label>
+            <input type="text"
+                class="form-control"
+                name="end_time"
+                [(ngModel)]="reservation.end_time"
+                #reservationModel="ngModel"
+                required>
+            <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
+              End Time is required
+            </span>
+        </div> -->
+
+
+        <div class="form-group">
+            <label>Start Time</label>
+            <input type="time"
+                    class="form-control"
+                    name="start_time"
+                    [(ngModel)]="reservation.start_time"
+                    #reservationModel="ngModel"
+                    required>
+            <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
+              Start Time is required
+            </span>
         </div>
 
-<div class="col-2">
-  <input type="checkbox"
-         [checked]="reservations[i]?.booked === 'yes'"
-         (change)="reservations[i].booked = $event.target.checked ? 'yes' : 'no'"
-         name="booked{{i}}" />
-  Booked
+        <div class="form-group">
+            <label>End Time</label>
+            <input type="time"
+                    class="form-control"
+                    name="end_time"
+                    [(ngModel)]="reservation.end_time"
+                    #reservationModel="ngModel"
+                    required>
+            <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
+              End Time is required
+            </span>
+        </div>
+       
+        <div class="form-group">
+            <label>Booked</label>
+            <div>
+                <label>
+                    <input type="radio" name="booked" [(ngModel)]="reservation.booked" value="yes" required>
+                    Yes
+                </label>
+                <label>
+                    <input type="radio" name="booked" [(ngModel)]="reservation.booked" value="no" required>
+                    No
+                </label>
+            </div>
+            <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
+                Booked status is required
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label>Upload Image</label>
+            <input type="file"
+                class="form-control"
+                name="imageName"
+                [(ngModel)]="reservation.imageName"
+                #imageName="ngModel"
+                (change)="onFileSelected($event)" />
+        </div>
+        
+        <button
+            class="btn btn-primary btn-sm"
+            [disabled]="f.invalid">
+            Add Reservation  
+        </button>
+
+    </form>
 </div>
 
 
-        <div class="col-2">
-          <img [src]="'http://localhost/angularapp2/reservationapi/uploads/' + item.imageName"
-               width="50"
-               height="50"
-               class="img-thumbnail"
-               [alt]="item.imageName" />
-        </div>
+<div id="theList">
+    <h2>Reservation List</h2>    
 
+    <div>
+      <div *ngFor="let item of reservations;let i = index;" class="row">
+  
+        <div class="col-2">
+          <input type="text"
+            [(ngModel)]="reservations[i].area"
+            class="form-control"
+            required
+            #area="ngModel"
+            [ngClass]="{ 'is-invalid': area.touched && area.invalid }">
+        </div>
+  
+        <div class="col-2">
+          <input type="text"
+            [(ngModel)]="reservations[i].start_time"
+            class="form-control"
+            required
+            #start_time="ngModel"
+            [ngClass]="{ 'is-invalid': start_time.touched && start_time.invalid }">
+        </div>
+  
+        <div class="col-2">
+          <input type="text"
+            [(ngModel)]="reservations[i].end_time"
+            class="form-control"
+            required
+            #end_time="ngModel"
+            [ngClass]="{ 'is-invalid': end_time.touched && end_time.invalid }">
+        </div>
+  
+        <div class="col-2">
+          <input type="text"
+            [(ngModel)]="reservations[i].booked"
+            class="form-control"
+            required
+            #booked="ngModel"
+            [ngClass]="{ 'is-invalid': booked.touched && booked.invalid }">
+        </div>      
+  
+        <div class="col-2">        
+            <img src="http://localhost/angularapp2/reservationapi/uploads/{{reservations[i].imageName}}" width="75" height="75" alt="{{reservations[i].imageName}}" />
+        </div>
+  
+        <div class="col-2">
+          <input type="button"
+            value="Edit"
+            class="btn btn-success btn-sm"
+            [disabled]="area.invalid || start_time.invalid || end_time.invalid || booked.invalid"
+            (click)="editReservation(area, start_time, end_time, booked, item.id)"
+            style="margin-right: 8px;">
+
+          <input type="button"
+            value="Delete"
+            class="btn btn-danger btn-sm"
+            (click)="deleteReservation(item.id? item.id:0)">
+        </div>
+  
       </div>
     </div>
-  </div>
+
+
+</div>
+
+
+<div id="links">
+    <button class="btn btn-sm btn-dark text-white" routerLink="/about">
+        About Us
+    </button>
 </div>

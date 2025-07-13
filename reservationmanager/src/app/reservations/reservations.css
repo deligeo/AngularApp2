@@ -1,5 +1,18 @@
+
 #theForm, #theList, #links {
     padding: 10px;
     border: 2px solid black;
     margin: 10px;
+}
+
+.form-group > input[type="text"], input[type="time"], input[type="file"] {
+    width: 30%;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline;
+}
+.form-group > label {
+    width: 10%;
 }

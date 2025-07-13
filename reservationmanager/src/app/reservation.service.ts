@@ -31,7 +31,7 @@ export class ReservationService {
     {
         return this.http.post(`${this.baseUrl}/add`, {data:reservation}).pipe(
           map((res:any) => {
-            res['data'];
+            return res['data'];
           })
         )
     }
