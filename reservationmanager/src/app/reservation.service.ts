@@ -5,7 +5,6 @@ import { map } from "rxjs/operators";
 
 import { Reservation } from "./reservation";
 
-
 @Injectable ({
     providedIn: 'root',
 })
@@ -27,6 +26,10 @@ export class ReservationService {
         );
     }
 
+    get(id: number) {
+        return this.http.get<Reservation>(`http://localhost/angularapp2/reservationapi/view.php?id=${id}`);
+    }
+
     add(reservation: Reservation)
     {
         return this.http.post(`${this.baseUrl}/add`, {data:reservation}).pipe(
@@ -44,6 +47,7 @@ export class ReservationService {
     delete(id: any)
     {
         const params = new HttpParams().set('id', id.toString());
-        return this.http.delete(`${this.baseUrl}/delete`, {params: params});
+        return this.http.get(`${this.baseUrl}/delete`, {params: params});
+        //return this.http.delete(`${this.baseUrl}/delete`, {params: params});
     }
 }

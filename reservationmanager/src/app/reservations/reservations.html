@@ -1,4 +1,4 @@
-<div id="theForm">
+<!-- <div id="theForm">
     <h2>Reservation Form</h2> 
     <form #f="ngForm" name="reservationForm" (submit)="addReservation(f)">
         
@@ -13,7 +13,7 @@
             <span class="help-block danger" *ngIf="reservationModel.errors?.['required'] && reservationModel.touched">
               Area is required
             </span>
-        </div>
+        </div> -->
 
         <!-- <div class="form-group">
             <label>Start time</label>
@@ -42,7 +42,7 @@
         </div> -->
 
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label>Start Time</label>
             <input type="time"
                     class="form-control"
@@ -157,15 +157,15 @@
             class="btn btn-success btn-sm"
             [disabled]="area.invalid || start_time.invalid || end_time.invalid || booked.invalid"
             (click)="editReservation(area, start_time, end_time, booked, item.id)"
-            style="margin-right: 8px;">
+            style="margin-right: 8px;"> -->
 
-          <input type="button"
+          <!-- <input type="button"
             value="Delete"
             class="btn btn-danger btn-sm"
             (click)="deleteReservation(item.id? item.id:0)">
-        </div>
+        </div> -->
   
-      </div>
+      <!-- </div>
     </div>
 
 
@@ -176,4 +176,42 @@
     <button class="btn btn-sm btn-dark text-white" routerLink="/about">
         About Us
     </button>
+</div> -->
+
+
+
+<div class="navbar">
+  <a routerLink="/reservations" class="navbar-title">
+    <h1>Reservation System</h1>
+  </a>
+  <div>
+    <a routerLink="/add">Add Reservation</a>
+    <a routerLink="/about">About Us</a>
+  </div>
+</div>
+
+
+<div id="theList">
+    <h2>Reservation List</h2>    
+
+    <div>
+      <div *ngFor="let item of reservations;let i = index;" class="row">
+  
+        <!-- Example of read-only row -->
+        <div class="col-2">{{ item.area }}</div>
+        <div class="col-2">{{ item.start_time }}</div>
+        <div class="col-2">{{ item.end_time }}</div>
+        <div class="col-2">{{ item.booked }}</div>
+        <div class="col-2">
+          <img src="http://localhost/angularapp2/reservationapi/uploads/{{item.imageName}}" width="75" height="75" alt="{{item.imageName}}" />
+        </div>
+
+        <div class="col-2">
+          <button class="btn btn-success btn-sm" [routerLink]="['/edit', item.id]">Edit</button>
+          <!-- <button class="btn btn-danger btn-sm" (click)="deleteReservation(item.id ? item.id : 0)">Delete</button> -->
+        </div>
+  
+      </div>
+    </div>
+
 </div>

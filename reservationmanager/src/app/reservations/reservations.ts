@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-contacts',
+  selector: 'app-reservations',
   imports: [HttpClientModule, CommonModule, FormsModule, RouterModule],
   providers: [ReservationService],
   templateUrl: './reservations.html',
@@ -51,7 +51,12 @@ export class Reservations implements OnInit {
     {
         this.resetAlerts();
 
-        this.uploadFile();
+        if (this.selectedFile) {
+            this.reservation.imageName = this.selectedFile.name;
+            this.uploadFile();
+        } else {
+            this.reservation.imageName = ''; // Let backend handle default placeholder
+        }
 
         this.reservationService.add(this.reservation).subscribe(
           (res: Reservation) => {
@@ -71,6 +76,11 @@ export class Reservations implements OnInit {
 
         // console.log(area);
         console.log(area.value);
+        console.log(start_time.value);
+        console.log(end_time.value);
+        console.log(booked.value);
+        console.log(+id);
+        
         this.reservationService.edit({area: area.value, start_time: start_time.value, end_time: end_time.value, booked: booked.value, id: +id}).subscribe(
                 (res) => {
                     this.cdr.detectChanges(); // <--- force UI update
@@ -82,23 +92,21 @@ export class Reservations implements OnInit {
         );
     }
 
-    deleteReservation(id: number)
-    {
+    deleteReservation(id: number): void {
+        const confirmed = window.confirm("Are you sure you want to delete this contact?");
+        if (!confirmed) return;
+
         this.resetAlerts();
 
         this.reservationService.delete(id)
-            .subscribe(
-                (res) => {
-                    this.reservations = this.reservations.filter( function (item) {
-                        return item['id'] && +item['id'] !== +id;
-                    });
-                    this.cdr.detectChanges(); // <--- force UI update
+            .subscribe({
+                next: () => {
+                    this.reservations = this.reservations.filter(item => item.id && +item.id !== +id);
                     this.success = "Deleted successfully";
-                },
-                (err) => (
-                    this.error = err.message
-                )
-            );
+                    this.cdr.detectChanges(); // <--- force UI update
+            },
+            error: err => this.error = err.message
+        });
     }
 
     uploadFile(): void 

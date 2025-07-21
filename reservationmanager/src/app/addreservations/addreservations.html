@@ -1,0 +1,73 @@
+<div class="navbar">
+  <a routerLink="/reservations" class="navbar-title">
+    <h1>Reservation System</h1>
+  </a>
+  <div>
+    <a routerLink="/add">Add Reservation</a>
+    <a routerLink="/about">About Us</a>
+  </div>
+</div>
+
+
+<!-- Main Form Container -->
+<div class="container">
+  <h2>Add Reservation</h2>
+
+  <form #f="ngForm" (ngSubmit)="addReservation(f)">
+    
+    <div class="form-group">
+      <label>Area</label>
+      <input type="text" name="area" class="form-control" [(ngModel)]="reservation.area" required>
+    </div>
+
+    <div class="form-group">
+      <label>Start Time</label>
+      <input type="time" name="start_time" class="form-control" [(ngModel)]="reservation.start_time" required>
+    </div>
+
+    <div class="form-group">
+      <label>End Time</label>
+      <input type="time" name="end_time" class="form-control" [(ngModel)]="reservation.end_time" required>
+    </div>
+
+    <div class="form-group">
+    <label>Booked</label><br>
+    <div class="form-check form-check-inline">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="bookedYes"
+        name="booked"
+        value="yes"
+        [(ngModel)]="reservation.booked"
+        required
+      />
+      <label class="form-check-label" for="bookedYes">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="bookedNo"
+        name="booked"
+        value="no"
+        [(ngModel)]="reservation.booked"
+        required
+      />
+      <label class="form-check-label" for="bookedNo">No</label>
+    </div>
+  </div>
+
+
+    <div class="form-group">
+      <label>Upload Image</label>
+      <input type="file" class="form-control" name="image" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mr-2" [disabled]="f.invalid">Add Reservation</button>
+    <button type="button" class="btn btn-secondary" routerLink="/reservations">Cancel</button>
+
+    <div *ngIf="success" class="alert alert-success mt-3">{{ success }}</div>
+    <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+  </form>
+</div>

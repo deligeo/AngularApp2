@@ -1,18 +1,133 @@
-
-#theForm, #theList, #links {
-    padding: 10px;
-    border: 2px solid black;
-    margin: 10px;
+/* General layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
 }
 
-.form-group > input[type="text"], input[type="time"], input[type="file"] {
-    width: 30%;
-    padding: 10px;
-    margin: 5px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: inline;
+/* Navbar */
+.navbar {
+  background-color: #343a40;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
 }
-.form-group > label {
-    width: 10%;
+
+.navbar h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 16px;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #ffc107;
+}
+
+/* Reservation list */
+#theList {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#theList h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #2c3e50;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.col-2 {
+  flex: 0 0 16.66%;
+  padding: 0 8px;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+img {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Buttons */
+button.btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  margin-right: 6px;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .col-2 {
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    margin: 8px 0 0 0;
+  }
 }
