@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-about',
@@ -10,9 +10,14 @@ import { RouterModule } from '@angular/router';
   styleUrl: './about.css'
 })
 export class About {
-
-    // constructor(private router: RouterModule)
+    userName: string = '';
+    constructor(private router: RouterModule, public authService: Auth) {}
     // {
     //     // No code is required
     // }
+
+    ngOnInit(): void {
+      this.userName = localStorage.getItem('username') || 'Guest';
+    }
+
 }

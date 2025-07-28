@@ -1,11 +1,10 @@
-
 <div class="navbar">
-  <a routerLink="/reservations" class="navbar-title">
-    <h1>Reservation System</h1>
-  </a>
-  <div>
-    <a routerLink="/add">Add Reservation</a>
-    <a routerLink="/about">About Us</a>
+  <div class="navbar-title">
+    <a routerLink="/reservations" ><h2>{{ userName }}'s Reservation System</h2></a>
+  </div>
+  <div class="navbar-actions">
+    <a routerLink="/about" class="nav-link">About Us</a>
+    <button (click)="authService.logout()" class="btn btn-danger btn-sm">Logout</button>
   </div>
 </div>
 

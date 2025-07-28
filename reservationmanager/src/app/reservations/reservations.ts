@@ -6,6 +6,7 @@ import { ReservationService } from '../reservation.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Auth } from '../services/auth';
 
 @Component({
   standalone: true,
@@ -22,13 +23,15 @@ export class Reservations implements OnInit {
 
   error = '';
   success = '';
+  userName: string = '';
 
   selectedFile: File | null = null;
 
-  constructor(private reservationService: ReservationService, private http: HttpClient, private cdr: ChangeDetectorRef) {}
+  constructor(private reservationService: ReservationService, public authService: Auth, private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getReservations();
+    this.userName = localStorage.getItem('username') || 'Guest';
   }
 
   getReservations(): void {
@@ -93,7 +96,7 @@ export class Reservations implements OnInit {
     }
 
     deleteReservation(id: number): void {
-        const confirmed = window.confirm("Are you sure you want to delete this contact?");
+        const confirmed = window.confirm("Are you sure you want to delete this reservation?");
         if (!confirmed) return;
 
         this.resetAlerts();

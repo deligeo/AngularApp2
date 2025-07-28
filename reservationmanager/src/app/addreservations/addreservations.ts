@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Reservation } from '../reservation';
 import { ReservationService } from '../reservation.service';
 import { RouterModule, Router } from '@angular/router';
+import { Auth } from '../services/auth';
 
 @Component({
   standalone: true,
@@ -19,8 +20,13 @@ export class Addreservations {
   selectedFile: File | null = null;
   error = '';
   success = '';
+  userName: string = '';
 
-  constructor(private reservationService: ReservationService, private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef) {}
+  constructor(private reservationService: ReservationService, private http: HttpClient, public authService: Auth, private router: Router, private cdr: ChangeDetectorRef) {}
+
+    ngOnInit(): void {
+      this.userName = localStorage.getItem('username') || 'Guest';
+    }
 
     addReservation(f: NgForm) {
       this.resetAlerts();

@@ -1,133 +1,139 @@
-/* General layout */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
-  padding: 0;
-}
-
-/* Navbar */
+/* === Navbar Styling === */
 .navbar {
-  background-color: #343a40;
-  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #2f4f4f;
   color: white;
+  padding: 8px 18px;      /* a bit more padding */
+  border-bottom: 2px solid #ccc;
+  min-height: 55px;       /* increased height */
+  box-sizing: border-box;
 }
 
-.navbar h1 {
-  font-size: 1.5rem;
+.navbar-title a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
   margin: 0;
-  color: white;
+  padding: 0;
+  line-height: 1.1;        /* slightly more line height */
 }
 
-.navbar a {
+.navbar-title a h2 {
+  margin: 0;
+  font-size: 1.35rem;      /* a bit bigger font */
+  line-height: 1.1;
+  color: inherit;
+  padding: 0;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-link {
   color: white;
   text-decoration: none;
-  margin-left: 16px;
-  font-size: 1rem;
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  padding: 3px 8px;
 }
 
-.navbar a:hover {
-  color: #ffc107;
+.nav-link:hover {
+  text-decoration: underline;
 }
 
-/* Reservation list */
+.btn-danger {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #dc3545;
+  color: white;
+}
+
+/* === Main Reservation List Container === */
 #theList {
-  max-width: 900px;
-  margin: 40px auto;
   padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 #theList h2 {
   text-align: center;
-  margin-bottom: 24px;
-  color: #2c3e50;
+  margin-bottom: 20px;
+  color: #333;
 }
 
+/* === Reservation Rows === */
 .row {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
 }
 
-.row:last-child {
-  border-bottom: none;
+.row:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
+/* === Columns === */
 .col-2 {
-  flex: 0 0 16.66%;
-  padding: 0 8px;
+  flex: 1;
+  padding: 5px;
+  text-align: center;
   font-size: 0.95rem;
-  word-break: break-word;
 }
 
-img {
-  border-radius: 6px;
+/* === Images === */
+.col-2 img {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 75px;
+  height: 75px;
   object-fit: cover;
 }
 
-/* Buttons */
-button.btn {
+/* === Buttons === */
+.btn {
   padding: 6px 12px;
   font-size: 0.85rem;
-  border-radius: 4px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 0.75rem;
 }
 
 .btn-success {
   background-color: #28a745;
   color: white;
-  margin-right: 6px;
 }
 
 .btn-success:hover {
   background-color: #218838;
 }
 
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
+/* === Add Reservation Link === */
+.add-reservation {
+  text-align: center;
+  margin-top: 30px;
 }
 
-.btn-danger:hover {
-  background-color: #c82333;
+.add-reservation a {
+  font-size: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .row {
-    flex-wrap: wrap;
-  }
-
-  .col-2 {
-    flex: 0 0 100%;
-    margin-bottom: 10px;
-  }
-
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar a {
-    margin: 8px 0 0 0;
-  }
+.add-reservation a:hover {
+  text-decoration: underline;
 }

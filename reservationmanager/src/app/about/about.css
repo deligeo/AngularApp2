@@ -1,63 +1,57 @@
-/* Navbar */
+/* === Navbar Styling === */
 .navbar {
-  background-color: #343a40;
-  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #2f4f4f;
   color: white;
+  padding: 8px 18px;      /* a bit more padding */
+  border-bottom: 2px solid #ccc;
+  min-height: 55px;       /* increased height */
+  box-sizing: border-box;
 }
 
-.navbar h1 {
-  font-size: 1.5rem;
+.navbar-title a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
   margin: 0;
-  color: white;
+  padding: 0;
+  line-height: 1.1;        /* slightly more line height */
 }
 
-.navbar a {
+.navbar-title a h2 {
+  margin: 0;
+  font-size: 1.35rem;      /* a bit bigger font */
+  line-height: 1.1;
+  color: inherit;
+  padding: 0;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-link {
   color: white;
   text-decoration: none;
-  margin-left: 16px;
-  font-size: 1rem;
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  padding: 3px 8px;
 }
 
-.navbar a:hover {
-  color: #ffc107;
+.nav-link:hover {
+  text-decoration: underline;
 }
 
-/* About container styles */
-#about {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #f9f9f9;
-  padding: 30px 25px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-
-#about h2 {
-  font-weight: 600;
-  font-size: 1.8rem;
-  color: #2c3e50;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-#about p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #444;
-  margin-bottom: 20px;
-  text-align: justify;
-}
-
-/* Responsive */
-@media (max-width: 540px) {
-  #about {
-    margin: 20px 12px;
-    padding: 20px 15px;
-  }
+.btn-danger {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #dc3545;
+  color: white;
 }

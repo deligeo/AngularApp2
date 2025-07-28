@@ -5,6 +5,7 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Reservation } from '../reservation';
 import { ReservationService } from '../reservation.service';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-editreservations',
@@ -23,6 +24,8 @@ export class Editreservations implements OnInit {
 
   success = '';
   error = '';
+  userName: string = '';
+
   selectedFile: File | null = null;
   previewUrl: string | null = null;
   originalImageName: string = '';
@@ -30,6 +33,7 @@ export class Editreservations implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reservationService: ReservationService,
+    public authService: Auth,
     private router: Router,
     private http: HttpClient,
     private cdr: ChangeDetectorRef
@@ -46,6 +50,7 @@ export class Editreservations implements OnInit {
       },
       error: () => this.error = 'Error loading Reservation.'
     });
+    this.userName = localStorage.getItem('username') || 'Guest';
   }
 
   onFileSelected(event: Event): void {

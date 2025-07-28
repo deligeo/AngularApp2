@@ -1,121 +1,139 @@
-/* Global layout */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Navbar */
+/* === Navbar Styling === */
 .navbar {
-  background-color: #343a40;
-  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #2f4f4f;
   color: white;
+  padding: 8px 18px;      /* a bit more padding */
+  border-bottom: 2px solid #ccc;
+  min-height: 55px;       /* increased height */
+  box-sizing: border-box;
 }
 
-.navbar h1 {
-  font-size: 1.5rem;
+.navbar-title a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
   margin: 0;
-  color: white;
+  padding: 0;
+  line-height: 1.1;        /* slightly more line height */
 }
 
-.navbar a {
+.navbar-title a h2 {
+  margin: 0;
+  font-size: 1.35rem;      /* a bit bigger font */
+  line-height: 1.1;
+  color: inherit;
+  padding: 0;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-link {
   color: white;
   text-decoration: none;
-  margin-left: 16px;
-  font-size: 1rem;
-  transition: color 0.3s;
+  font-size: 0.95rem;
+  padding: 3px 8px;
 }
 
-.navbar a:hover {
-  color: #ffc107;
+.nav-link:hover {
+  text-decoration: underline;
 }
 
-/* Form container */
+.btn-danger {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #dc3545;
+  color: white;
+}
+
+/* === Main Form Container === */
 .container {
-  max-width: 500px;
+  max-width: 600px;
   margin: 40px auto;
-  background: white;
-  padding: 30px;
+  padding: 25px 30px;
+  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .container h2 {
   text-align: center;
-  margin-bottom: 24px;
-  color: #2c3e50;
+  margin-bottom: 30px;
+  color: #333;
 }
 
-/* Form elements */
+/* === Form Fields === */
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
-label {
-  font-weight: 600;
-  color: #2c3e50;
+.form-group label {
+  font-weight: bold;
   display: block;
   margin-bottom: 6px;
 }
 
-input.form-control {
+.form-control {
   width: 100%;
-  padding: 10px 12px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   font-size: 1rem;
-  border: 1.5px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
 }
 
-input.form-control:focus {
-  border-color: #2980b9;
-  outline: none;
+/* === Radio Buttons === */
+.form-check {
+  margin-right: 15px;
 }
 
-/* Buttons */
-button.btn {
-  padding: 10px 18px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.form-check-input {
+  margin-right: 5px;
+}
+
+.form-check-label {
+  margin-right: 15px;
+  font-weight: normal;
+}
+
+/* === Buttons === */
+button {
   margin-right: 10px;
 }
 
-button.btn-primary {
+.btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
   background-color: #007bff;
   color: white;
+  border: none;
 }
 
-button.btn-primary:disabled {
-  background-color: #a0c6f7;
-  cursor: not-allowed;
-}
-
-button.btn-primary:hover:not(:disabled) {
-  background-color: #0056b3;
-}
-
-button.btn-secondary {
+.btn-secondary {
   background-color: #6c757d;
   color: white;
+  border: none;
 }
 
-button.btn-secondary:hover {
-  background-color: #565e64;
-}
-
-/* Alerts */
+/* === Alerts === */
 .alert {
-  padding: 12px;
-  border-radius: 6px;
+  padding: 10px 15px;
+  border-radius: 4px;
   font-size: 0.95rem;
-  margin-top: 20px;
 }
 
 .alert-success {
@@ -130,39 +148,22 @@ button.btn-secondary:hover {
   border: 1px solid #f5c6cb;
 }
 
-/* Responsive */
-@media (max-width: 540px) {
-  .container {
-    margin: 20px 12px;
-    padding: 20px;
-  }
-
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
-  .navbar a {
-    margin-left: 0;
-    margin-top: 8px;
+  .container {
+    margin: 20px;
+    padding: 20px;
   }
 
-  button.btn {
+  button {
+    display: block;
     width: 100%;
     margin-bottom: 10px;
   }
-}
-
-.form-check {
-  display: inline-block;
-  margin-right: 15px;
-}
-
-.form-check-input {
-  margin-right: 6px;
-  cursor: pointer;
-}
-
-.form-check-label {
-  cursor: pointer;
 }

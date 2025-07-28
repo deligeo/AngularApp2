@@ -31,6 +31,23 @@
         {
             $new = 'placeholder_100.jpg';
         }
+        
+        // 🔍 Check for overlapping reservations for the same area
+    $dupQuery = "SELECT * FROM `reservations` 
+                 WHERE `area` = ? 
+                 AND (
+                     (`start_time` < ? AND `end_time` > ?)
+                 )";
+    $stmt = mysqli_prepare($con, $dupQuery);
+    mysqli_stmt_bind_param($stmt, 'sss', $area, $end_time, $start_time);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        http_response_code(409); // Conflict
+        echo json_encode(['message' => 'Time slot overlaps with an existing reservation.']);
+        exit();
+    }
 
         // Store the data
         $sql = "INSERT INTO `reservations`(`id`,`area`,`start_time`, `end_time`, `booked`, `imageName`) VALUES (null,'{$area}','{$start_time}','{$end_time}','{$booked}','{$new}')";
