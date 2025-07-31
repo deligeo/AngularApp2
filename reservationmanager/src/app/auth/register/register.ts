@@ -12,10 +12,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
-
 export class Register {
   userName = '';
   password = '';
+  confirmPassword = '';
   emailAddress = '';
   errorMessage = '';
   successMessage = '';
@@ -23,6 +23,15 @@ export class Register {
   constructor(private auth: Auth, private router: Router, private cdr: ChangeDetectorRef) {}
 
   register() {
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    if (this.password !== this.confirmPassword) {
+      this.errorMessage = 'Passwords do not match.';
+      this.cdr.detectChanges();
+      return;
+    }
+
     this.auth.register({
       userName: this.userName,
       password: this.password,
@@ -31,13 +40,17 @@ export class Register {
       next: res => {
         if (res.success) {
           this.successMessage = 'Registration successful. Please log in.';
+          this.cdr.detectChanges();
           setTimeout(() => this.router.navigate(['/login']), 1500);
         } else {
           this.errorMessage = res.message;
+          this.cdr.detectChanges();
         }
-        this.cdr.detectChanges();
       },
-      error: () => this.errorMessage = 'Server error during registration.'
+      error: () => {
+        this.errorMessage = 'Server error during registration.';
+        this.cdr.detectChanges();
+      }
     });
   }
 }

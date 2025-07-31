@@ -8,13 +8,13 @@
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
- 
+
 .form-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
   color: #333;
 }
- 
+
 .form-container input[type="text"],
 .form-container input[type="email"],
 .form-container input[type="password"] {
@@ -26,12 +26,12 @@
   box-sizing: border-box;
   transition: border-color 0.3s;
 }
- 
+
 .form-container input:focus {
   border-color: #007bff;
   outline: none;
 }
- 
+
 .form-container button[type="submit"] {
   width: 100%;
   padding: 12px;
@@ -44,11 +44,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
- 
+
 .form-container button[type="submit"]:hover {
   background-color: #0056b3;
 }
- 
+
 .btn.btn-outline-primary {
   position: absolute;
   top: 20px;
@@ -63,14 +63,20 @@
   transition: all 0.3s ease;
   text-decoration: none;
 }
- 
+
 .btn.btn-outline-primary:hover {
   background-color: #007bff;
   color: #fff;
 }
- 
+
 .error {
-  margin-top: 15px;
+  margin-top: 10px;
   color: #dc3545;
+  font-size: 14px;
+}
+
+.success {
+  margin-top: 10px;
+  color: #28a745;
   font-size: 14px;
 }
